@@ -12,14 +12,38 @@
 </head>
 
 <body class="w-screen h-screen min-w-screen min-h-screen bg-gray-200">
+    <div class="fixed hidden inset-0 z-9999 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full"
+        id="contenedor-carrito">
+        <button id="close-cart-button" class="w-1/6 top-4 left-4 h-16 ">
+            <ion-icon class="w-12 text-white h-full" name="close-circle-outline"></ion-icon>
+        </button>
+        <div
+            class="flex bg-gray-800 rounded-t-xl mx-auto space-x-12 py-1 text-white w-full text-md items-center font-semibold pl-6 w-11/12">
+            <div class="flex ">
+                Articulo
+            </div>
+            <div class="pl-6 flex ">
+                Precio
+            </div>
+            <div class="flex ">
+                cantidad:
+            </div>
+        </div>
+        <div id="carrito"
+            class=" h-5/6 mx-auto rounded-b-xl shadow-grey-200 shadow-lg overflow-scroll py-4 px-2 w-11/12 w-11/12 bg-gray-800">
+
+
+
+        </div>
+    </div>
 
     <script defer src="https://use.fontawesome.com/releases/v5.15.4/js/all.js"
         integrity="sha384-rOA1PnstxnOBLzCLMcre8ybwbTmemjzdNlILg8O7z1lUkLXozs4DHonlDtnE7fpc"
         crossorigin="anonymous"></script>
 
 
-    <header
-        class="flex top-0 fixed bg-slate-700 backdrop-blur-xl w-full h-32 px-4 md:px-12 py-3 items-center justify-evenly">
+    <header id="header-container"
+        class="flex top-0 sticky bg-slate-700 backdrop-blur-xl w-full h-32 px-4 md:px-12 py-3 items-center justify-evenly">
         <a class="flex w-1/4 h-24" href="./index.html">
             <img class="object-cover" src="./assets/images/logo-no-bg.png" alt="logo ecomm">
         </a>
@@ -27,20 +51,13 @@
             class="font-extrabold text-center  text-transparent md:text-xl bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600">
             Ecomm <br /> La tienda de tus deseos
         </span>
-        <button class="w-1/4 h-32 text-black " onclick="toggleCartContainer();">
-            <ion-icon class="w-12 text-white h-full" name="cart-outline"></ion-icon>
+        <button class="w-1/4 h-32 text-black ">
+            <ion-icon class="w-12 text-white h-full" id="open-cart-button" name="cart-outline"></ion-icon>
         </button>
     </header>
 
     <main>
-        <div class=" h-screen m-4 w-11/12 absolute hidden bg-gray-800 backdrop-blur-sm" id="contenedor-carrito">
-            <div id="carrito" class="w-full h-full flex flex-col mx-6 my-12">
-                <button class="w-1/6 top-4 left-4 h-16 " onclick="toggleCartContainer();">
-                    <ion-icon class="w-12 text-white h-full" name="close-circle-outline"></ion-icon>
-                </button>
-            </div>
 
-        </div>
 
         <!-- Seccion de productos -->
         <section class="w-full top-48 md:px-12 py-4 mt-1">
