@@ -8,7 +8,6 @@ const botonRegistro = document.querySelector("#register-button");
 const carrito = document.querySelector("#carrito");
 const botonLogin = document.querySelector("#login-button");
 const botonAgregarCarrito = document.querySelector(".addToCartButton");
-const botonEliminarCarrito = document.querySelector(".removeFromCartButton");
 const contenedorProductos = document.querySelector("#products-container");
 const botonAbrirCarrito = document.querySelector("#open-cart-button");
 const botonCerrarCarrito = document.querySelector("#close-cart-button");
@@ -22,12 +21,12 @@ window.addEventListener("DOMContentLoaded", (e) => {
 
 contenedorProductos.addEventListener("mouseover", (e) => {
   if (e.target.classList.contains("CartButton")) {
-    addItemToCart(e.target.id);
+    addItemToCart(parseInt(e.target.id));
   }
 });
 carrito.addEventListener("mouseover", (e) => {
-  if (e.target.classList.contains("removeFromCartButton")) {
-    removeItemFromCart(e.target.id);
+  if (e.target.classList.contains("removeFromCart")) {
+    removeItemFromCart(parseInt(e.target.id));
   }
 });
 
@@ -96,18 +95,22 @@ function addItemToCart(id) {
     ? (shoppingCart = [...shoppingCart, [(shoppingCart[id].quantity += 1)]])
     : shoppingCart.push(products[id]);
 
+  /* 
+    TODO: arreglar la forma en la que se 
+    agregan objetos segun exista o no 
+    */
+
   updateCart();
 
-  console.log(shoppingCart);
   almacenarCarritoLocalStorage(shoppingCart);
 }
 
 function removeItemFromCart(productId) {
-  let eliminar = shoppingCart.findIndex((p) => p.id == productId);
-  console.log(eliminar);
-  shoppingCart.splice(eliminar, 1);
-  console.log(shoppingCart);
+  const articulo = shoppingCart[productId];
+  shoppingCart.splice(articulo, 1);
+
   updateCart();
+
   almacenarCarritoLocalStorage(shoppingCart);
 }
 
@@ -138,7 +141,7 @@ function updateCart() {
                 <div class="w-2/12" id="product-price">
                     ${quantity}
                 </div>
-                <button id="${id}" class="w-1/12 removeFromCartButton CartButton h-24 bg-red-400 rounded-lg flex items-center justify-center flex-col" id="buy-button">
+                <button id="${id}" class="w-1/12 removeFromCart h-24 bg-red-400 rounded-lg flex items-center justify-center flex-col" id="buy-button">
                     <i class="fa-solid mb-1 fa-cart-shopping text-black">❌</i>    
                     <span class="text-white font-semibold"> 
                         Eliminar
